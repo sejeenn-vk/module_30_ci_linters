@@ -5,7 +5,7 @@ flake8-pie==0.15.0
 isort==5.9.3
 mypy==0.931
 pytest
-aiosqlite==0.20.0
+aiosqlite
 annotated-types==0.7.0
 anyio==4.4.0
 click==8.1.7
