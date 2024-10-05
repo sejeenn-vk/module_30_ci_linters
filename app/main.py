@@ -1,11 +1,11 @@
 from typing import List
-import uvicorn
-from fastapi import FastAPI
 
 import models
-from schemas import RecipeOut, RecipeDetail, RecipeIn
-from database import select_all_recipes, get_detail_recipe, add_new_recipe, add_new_data
-
+import uvicorn
+from database import (add_new_data, add_new_recipe, get_detail_recipe,
+                      select_all_recipes)
+from fastapi import FastAPI
+from schemas import RecipeDetail, RecipeIn, RecipeOut
 
 app = FastAPI()
 
@@ -18,8 +18,7 @@ async def get_all_recipes():
 
 @app.get("/recipes/{recipe_id}", response_model=List[RecipeDetail])
 async def get_recipe_details(recipe_id):
-    recipe_with_ingredients = await get_detail_recipe(recipe_id)
-    return recipe_with_ingredients
+    return await get_detail_recipe(recipe_id)
 
 
 @app.post("/recipes", response_model=RecipeIn)

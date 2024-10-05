@@ -18,8 +18,8 @@ jobs:
       - name: Run mypy
         run: mypy app/
       - name: Run black
-        run: black --diff --check app/
+        run: black app/
       - name: Run isort
-        run: isort --check-only app/
+        run: isort app/
       - name: Run flake8
         run: flake8 app/

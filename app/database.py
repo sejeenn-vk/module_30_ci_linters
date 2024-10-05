@@ -1,7 +1,6 @@
-import asyncio
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from models import Ingredient, IngredientsInRecipe, Recipe
 from sqlalchemy import select
-from models import Recipe, Ingredient, IngredientsInRecipe
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 engine = create_async_engine("sqlite+aiosqlite:///./app.db")
 async_session = async_sessionmaker(engine, expire_on_commit=False)
@@ -19,8 +18,7 @@ async def select_all_recipes():
     """
     async with async_session() as session:
         stmt = select(Recipe).order_by(-Recipe.views, Recipe.cooking_time)
-        result = await session.execute(stmt)
-        return result
+        return await session.execute(stmt)
 
 
 async def get_detail_recipe(recipe_id: int):
@@ -35,15 +33,18 @@ async def get_detail_recipe(recipe_id: int):
     :return:
     """
     async with async_session() as session:
-        result = await session.execute(select(Recipe).filter(Recipe.id == recipe_id))
-
+        result = await session.execute(select(Recipe).filter(
+            Recipe.id == recipe_id)
+        )
         result_2 = await session.execute(
             select(
                 IngredientsInRecipe.quantity,
                 Ingredient.ingredient_name,
                 Ingredient.ingredient_description,
             )
-            .join(Ingredient, Ingredient.id == IngredientsInRecipe.ingredient_id)
+            .join(
+                Ingredient, Ingredient.id == IngredientsInRecipe.ingredient_id
+            )
             .where(IngredientsInRecipe.recipe_id == recipe_id)
         )
 
@@ -53,7 +54,7 @@ async def get_detail_recipe(recipe_id: int):
         recipe.views += 1
         await session.commit()
 
-        recipe_with_ingredients = [
+        return [
             {
                 "id": recipe.id,
                 "recipe_name": recipe.recipe_name,
@@ -70,14 +71,12 @@ async def get_detail_recipe(recipe_id: int):
             },
         ]
 
-        return recipe_with_ingredients
-
 
 async def add_new_data(*objs):
     """
-    Функция наполнения базы данных. Вставляются объекты рецептов, ингредиентов
-    или связей рецептов с ингредиентами.
-    :param objs: Список объектов (Recipe, Ingredients или IngredientsInRecipe)
+    Функция наполнения базы данных. Вставляются объекты рецептов,
+    ингредиентов или связей рецептов с ингредиентами.
+    :param objs: Список объектов (Recipe, Ingredients, IngredientsInRecipe)
     :return: None
     """
     async with async_session() as session:
