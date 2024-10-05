@@ -34,8 +34,7 @@ async def get_detail_recipe(recipe_id: int):
     """
     async with async_session() as session:
         result = await session.execute(
-            select(Recipe).filter(
-            Recipe.id == recipe_id)
+            select(Recipe).filter(Recipe.id == recipe_id)
         )
         result_2 = await session.execute(
             select(
