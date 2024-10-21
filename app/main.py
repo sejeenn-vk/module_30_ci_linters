@@ -2,8 +2,7 @@ from typing import List
 
 import models
 import uvicorn
-from database import (add_new_data, add_new_recipe, get_detail_recipe,
-                      select_all_recipes)
+from database import add_new_data, add_new_recipe, get_detail_recipe, select_all_recipes
 from fastapi import FastAPI
 from schemas import RecipeDetail, RecipeIn, RecipeOut
 
