@@ -1,9 +1,8 @@
 from typing import List
 
+import database
 import models
 import uvicorn
-from database import (add_new_data, add_new_recipe, get_detail_recipe,
-                      select_all_recipes)
 from fastapi import FastAPI
 from schemas import RecipeDetail, RecipeIn, RecipeOut
 
@@ -12,13 +11,13 @@ app = FastAPI()
 
 @app.get("/recipes", response_model=List[RecipeOut])
 async def get_all_recipes():
-    result = await select_all_recipes()
+    result = await database.select_all_recipes()
     return result.scalars().all()
 
 
 @app.get("/recipes/{recipe_id}", response_model=List[RecipeDetail])
 async def get_recipe_details(recipe_id):
-    return await get_detail_recipe(recipe_id)
+    return await database.get_detail_recipe(recipe_id)
 
 
 @app.post("/recipes", response_model=RecipeIn)
@@ -29,7 +28,7 @@ async def add_recipe(recipe: RecipeIn):
         recipe_description=recipe.recipe_description,
     )
     ingredients = recipe.ingredients
-    new_recipe_id = await add_new_recipe(new_recipe)
+    new_recipe_id = await database.add_new_recipe(new_recipe)
     ingredients_in_recipe = [
         models.IngredientsInRecipe(
             recipe_id=new_recipe_id,
@@ -39,7 +38,7 @@ async def add_recipe(recipe: RecipeIn):
         for i in ingredients
     ]
     if new_recipe_id:
-        await add_new_data(ingredients_in_recipe)
+        await database.add_new_data(ingredients_in_recipe)
         return recipe
 
 

@@ -32,12 +32,16 @@ several_recipes = [
 ]
 
 several_ingredients = [
-    Ingredient(ingredient_name="Мука пшеничная", ingredient_description="высший сорт"),
+    Ingredient(
+        ingredient_name="Мука пшеничная", ingredient_description="высший сорт"
+    ),
     Ingredient(ingredient_name="Мука овсяная"),
     Ingredient(ingredient_name="Мука ржаная", ingredient_description="любая"),
     Ingredient(ingredient_name="Соль"),
     Ingredient(ingredient_name="Сахар"),
-    Ingredient(ingredient_name="Яйцо куриное", ingredient_description="0 категории"),
+    Ingredient(
+        ingredient_name="Яйцо куриное", ingredient_description="0 категории"
+    ),
     Ingredient(ingredient_name="Яйцо перепелиное"),
     Ingredient(ingredient_name="Масло подсолнечное"),
     Ingredient(ingredient_name="Масло сливочное"),
@@ -47,21 +51,41 @@ several_ingredients = [
 
 relationship_ingredients_to_recipes = [
     IngredientsInRecipe(recipe_id=1, ingredient_id=1, quantity="3 стакана"),
-    IngredientsInRecipe(recipe_id=1, ingredient_id=10, quantity="500 миллилитров"),
-    IngredientsInRecipe(recipe_id=1, ingredient_id=4, quantity="1/2 чайных ложки"),
-    IngredientsInRecipe(recipe_id=1, ingredient_id=5, quantity="2 чайных ложки"),
-    IngredientsInRecipe(recipe_id=1, ingredient_id=8, quantity="50 миллилитров"),
+    IngredientsInRecipe(
+        recipe_id=1, ingredient_id=10, quantity="500 миллилитров"
+    ),
+    IngredientsInRecipe(
+        recipe_id=1, ingredient_id=4, quantity="1/2 чайных ложки"
+    ),
+    IngredientsInRecipe(
+        recipe_id=1, ingredient_id=5, quantity="2 чайных ложки"
+    ),
+    IngredientsInRecipe(
+        recipe_id=1, ingredient_id=8, quantity="50 миллилитров"
+    ),
     IngredientsInRecipe(recipe_id=1, ingredient_id=7, quantity="2 штуки"),
     IngredientsInRecipe(recipe_id=2, ingredient_id=2, quantity="4 стакана"),
     IngredientsInRecipe(recipe_id=2, ingredient_id=10, quantity="1 литр"),
-    IngredientsInRecipe(recipe_id=2, ingredient_id=4, quantity="1/2 чайной ложки"),
-    IngredientsInRecipe(recipe_id=2, ingredient_id=5, quantity="2 чайных ложки"),
+    IngredientsInRecipe(
+        recipe_id=2, ingredient_id=4, quantity="1/2 чайной ложки"
+    ),
+    IngredientsInRecipe(
+        recipe_id=2, ingredient_id=5, quantity="2 чайных ложки"
+    ),
     IngredientsInRecipe(recipe_id=2, ingredient_id=9, quantity="100 грамм"),
     IngredientsInRecipe(recipe_id=3, ingredient_id=3, quantity="5 стаканов"),
-    IngredientsInRecipe(recipe_id=3, ingredient_id=11, quantity="700 миллилитров"),
-    IngredientsInRecipe(recipe_id=3, ingredient_id=4, quantity="1/2 чайной ложки"),
-    IngredientsInRecipe(recipe_id=3, ingredient_id=5, quantity="1 чайная ложка"),
-    IngredientsInRecipe(recipe_id=3, ingredient_id=8, quantity="3 столовых ложки"),
+    IngredientsInRecipe(
+        recipe_id=3, ingredient_id=11, quantity="700 миллилитров"
+    ),
+    IngredientsInRecipe(
+        recipe_id=3, ingredient_id=4, quantity="1/2 чайной ложки"
+    ),
+    IngredientsInRecipe(
+        recipe_id=3, ingredient_id=5, quantity="1 чайная ложка"
+    ),
+    IngredientsInRecipe(
+        recipe_id=3, ingredient_id=8, quantity="3 столовых ложки"
+    ),
 ]
 
 

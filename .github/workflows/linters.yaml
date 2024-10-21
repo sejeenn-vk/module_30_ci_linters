@@ -18,8 +18,8 @@ jobs:
       - name: Run mypy
         run: mypy app/
       - name: Run black
-        run: black --diff --check app/
+        run: black --line-length=80 --diff --check app/
       - name: Run isort
         run: isort --check-only app/
       - name: Run flake8
-        run: flake8 --ignore=E501 app/
+        run: flake8 app/
