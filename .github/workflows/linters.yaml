@@ -21,7 +21,5 @@ jobs:
         run: black app/
       - name: Run isort
         run: isort app/
-      - name: Config flake8
-        run: flake8 --ignore=E501 .
       - name: Run flake8
         run: flake8 app/
