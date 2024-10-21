@@ -31,7 +31,7 @@ async def get_detail_recipe(recipe_id: int):
     - Текстовое описание.
     :param recipe_id: Id рецепта, который хотим посмотреть.
     :return:
-    """
+    """ # noqa
     async with async_session() as session:
         result = await session.execute(
             select(Recipe).filter(Recipe.id == recipe_id)
