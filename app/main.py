@@ -9,6 +9,11 @@ from schemas import RecipeDetail, RecipeIn, RecipeOut
 app = FastAPI()
 
 
+@app.get("/")
+def main_page():
+    return {"response": "Main page"}
+
+
 @app.get("/recipes", response_model=List[RecipeOut])
 async def get_all_recipes():
     result = await database.select_all_recipes()
