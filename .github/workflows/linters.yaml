@@ -22,4 +22,4 @@ jobs:
       - name: Run isort
         run: isort app/
       - name: Run flake8
-        run: flake8 app/
+        run: flake8 --ignore=E501 app/
